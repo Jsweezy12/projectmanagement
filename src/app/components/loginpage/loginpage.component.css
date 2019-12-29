@@ -1,0 +1,43 @@
+#background{
+    position: absolute;
+    top:0;
+    left:-11px;
+    width:102vw;
+    height:100vh;
+    background: url('../../../assets/section1.png');
+    background-repeat: round;
+    background-size: cover;
+}
+
+.centerbox{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input{
+    width:120px;
+    position: absolute;
+    border:none;
+    border-bottom:2px solid #f08080ad
+}
+
+input:focus{
+    outline:none
+}
+
+#logininput{
+    width:100px;
+    transform: translate(131px, 127px);
+}
+
+#passwordinput{
+    transform: translate(315px, 158px);
+}
+
+.hover:hover{
+    cursor: pointer;
+    
+}
