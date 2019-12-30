@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+
+
+
 
 export interface PeriodicElement {
   name: string;
@@ -18,7 +23,23 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'}
 ];
+
+export class TablePaginationExample implements OnInit {
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','location','action'];
+  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+  ngOnInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+}
+
+
 
 @Component({
   selector: 'app-clients',
@@ -33,7 +54,7 @@ export class ClientsComponent implements OnInit {
 
   
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','location'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','location','action'];
   dataSource = ELEMENT_DATA;
   constructor() { }
 

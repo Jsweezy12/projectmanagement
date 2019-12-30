@@ -1,8 +1,25 @@
-table {
+::ng-deep table {
     width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 
   ::ng-deep .head{
     color:#3f0c0c;
     font-size:12px
   }
+
+  tr.mat-footer-row, tr.mat-row {
+      height: 30px;
+      font-family: Arial, Helvetica, sans-serif;
+      border: none;
+  }
+
+  tr.mat-footer-row, tr.mat-row:nth-child(even) {
+    background:#610101d1;
+}
+
+::ng-deep td.mat-cell{
+    border:none !important;
+    border-bottom-width: 0px !important;
+}
