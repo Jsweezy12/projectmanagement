@@ -1,0 +1,8 @@
+table {
+    width: 100%;
+  }
+
+  ::ng-deep .head{
+    color:#3f0c0c;
+    font-size:12px
+  }

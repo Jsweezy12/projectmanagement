@@ -1,0 +1,14 @@
+#content{
+    position: absolute;
+    top: 140px;
+    left: 276px;
+    width: 70vw;
+    height: 70vh;
+    overflow:hidden;
+    box-shadow: 0px 0px 3px 2px lightgrey;
+}
+
+.hover:hover{
+    cursor: pointer;
+    filter: drop-shadow(0px 3px 20px rgba(0, 0, 0, 0.9));
+}
