@@ -8,11 +8,15 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route :ActivatedRoute) { }
 
   ngOnInit() {
 
   
   }
-
+  
+  nav(string){
+    console.log(string)
+    this.router.navigate([string],{relativeTo:this.route})
+  }
 }

@@ -12,15 +12,20 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ReactiveFormsModule } from '@angular/forms';
 
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule, MatInputModule} from '@angular/material';
+
 import {MatIconModule} from '@angular/material/icon';
 
 
 const appRoutes: Routes = [
   { path: 'home/:id', component: HomepageComponent ,children:[
-    {path: 'client',component: ClientsComponent}
+    {path: 'client',component: ClientsComponent},
+    {path: 'projects',component: ProjectsComponent}
   ]
 },
   { path: '', component: LoginpageComponent },
@@ -28,6 +33,7 @@ const appRoutes: Routes = [
   // ,{path:'**',component: LoginpageComponent}
 
 ];
+
 
 @NgModule({
   declarations: [
@@ -41,9 +47,13 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes,{ useHash: true }),
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    HttpClientModule,
+    MatStepperModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

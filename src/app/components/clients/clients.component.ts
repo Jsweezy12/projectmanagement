@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
-
+import {ClientsService} from '../../service/clients.service';
+import {FormBuilder, FormGroup, Validators ,FormControl} from '@angular/forms';
 
 
 
@@ -11,6 +12,23 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
+
+
+
+// clientee = {
+//   "id": "",
+//   "name": "string",
+//   "client": "string",
+//   "task": [
+//     {}
+//   ],
+//   "dateadded": "string",
+//   "notes": [
+//     {}
+//   ],
+//   "status": "string",
+//   "additionalProp1": {}
+// }
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -28,6 +46,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'}
 ];
 
+
+
 export class TablePaginationExample implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','location','action'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -38,6 +58,7 @@ export class TablePaginationExample implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 }
+
 
 
 
@@ -52,13 +73,30 @@ export class TablePaginationExample implements OnInit {
 
 export class ClientsComponent implements OnInit {
 
-  
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','location','action'];
   dataSource = ELEMENT_DATA;
-  constructor() { }
+  constructor(private client:ClientsService,
+    private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
   }
 
+  createclient(){
+   let data ={}
+    this.client.createClient(data).subscribe(res =>{
+      console.log(res)
+    },error =>{
+      console.log(error)
+    })
+  }
 }
