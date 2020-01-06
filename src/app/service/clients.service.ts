@@ -11,7 +11,11 @@ export class ClientsService {
 
   constructor(private http: HttpClient) { }
 
-  createclient(data){
+  createClient(data){
     return this.http.post(`${this.client}`,data)
+  }
+
+  getAllClients(){
+    return this.http.get(`${this.client}`)
   }
 }
