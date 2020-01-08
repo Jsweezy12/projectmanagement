@@ -42,6 +42,13 @@
     right:5px
 }
 
+.input{
+    background: #580000cc;
+    padding: 10px;
+    color: white;
+    border-radius: 20px;
+}
+
 .addform{
     position: relative;
     top: 0px;
@@ -52,17 +59,18 @@
 }
 
 ::ng-deep .addform input{
-    background: #580000cc;
+    /* background: #580000cc;
     padding: 10px;
+    border-radius: 20px; */
     color: white;
-    border-radius: 20px;
+    
 }
 
 ::ng-deep .addform textarea{
-    background: #580000cc;
+      /* background: #580000cc;
     padding: 10px;
+    border-radius: 20px; */
     color: white;
-    border-radius: 5px;
 }
 
 ::ng-deep .addform label{
@@ -85,6 +93,18 @@
     cursor: pointer;
 }
 
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+    background-color:rgba(71,0,0,1) !important
+    }
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline{
+    background-color:rgba(71,0,0,0.5) !important
+}
+
+::ng-deep .mat-form-field-ripple{
+background-color:rgba(71,0,0,1)!important
+}
+
 .cardContainer{
     position: relative;
     height: 100%;
@@ -104,7 +124,7 @@
     box-shadow: -2px 2px 3px rgba(0,0,0,0.3);  
 }
 
-.centered{
+::ng-deep .centered{
     width: 650px;
     position: absolute;
     top: 50%;
@@ -183,7 +203,7 @@
     float: right;
     width: calc(40% - 200px);
     height: 100%;
-    
+    min-width:300px
 }
 
 
@@ -198,6 +218,7 @@
     font-size: 22px;
     color: white;
 }
+
 
 
 

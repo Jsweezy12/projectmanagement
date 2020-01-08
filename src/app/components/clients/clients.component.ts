@@ -128,6 +128,10 @@ export class ClientsComponent implements OnInit {
     this.show=false
   }
 
+  close(){
+    this.show=false
+  }
+
   getchange(){
     let data = this.firstFormGroup.value
     let data2 = this.secondFormGroup.value

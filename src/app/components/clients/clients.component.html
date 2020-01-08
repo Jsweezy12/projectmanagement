@@ -1,7 +1,9 @@
 
 
 <div class="addform" *ngIf="show">
-    <div id="centered">
+  <button class="close" (click)="close()">X</button>
+    <div class="centered">
+      
     <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <!-- (ngSubmit)="onSubmit()"  -->
         <mat-step [stepControl]="firstFormGroup">
@@ -30,6 +32,7 @@
 
             <div style="padding:10px">
               <button mat-button matStepperNext>Next</button>
+              
             </div>
 
             
@@ -168,10 +171,13 @@
                     <input matInput
                     formControlName="title" required>
             </label>   
+            <br>
+            <br>
+            <br>
                  
             <label><mat-icon>note</mat-icon>Note<br>
-                <input matInput
-                formControlName="note" required>
+                <textarea matInput
+                formControlName="note" required ></textarea>
             </label> 
              
     
@@ -192,11 +198,14 @@
         <div class="graph">
             <label style="color:rgba(125,125,125,0.2)">Payment History</label>
             <svg height="100%" width="100%">
-                <line x1="0" y1="22" x2="200" y2="22" 
-                stroke-width="15"
-                stroke-linecap="round"
-                stroke="red"
-                />
+              <rect width="100" height="15" 
+              x="0" y="25"
+              rx="3" ry="3"
+              fill='rgba(255,0,25,0.4)'
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke="red"
+             />
               </svg>
         </div>
 
@@ -204,11 +213,19 @@
         <div class="graph">
             <label style="color:rgba(125,125,125,0.2)">No. Projects</label>
             <svg height="100%" width="100%">
-                <line x1="0" y1="22" x2="200" y2="22" 
+                <!-- <line x1="0" y1="22" x2="200" y2="22" 
                 stroke-width="15"
                 stroke-linecap="round"
                 stroke="blue"
-                />
+                /> -->
+                <rect width="100" height="15" 
+                x="0" y="25"
+                rx="3" ry="3"
+                fill='rgba(0,0,255,0.4)'
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke="blue"
+               />
               </svg>
         </div>
 
