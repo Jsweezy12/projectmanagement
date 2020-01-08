@@ -1,3 +1,14 @@
+#controlpanel{
+    position: relative;
+    float:left;
+    width: auto;
+    height: 100%;
+    padding: 5px;
+    transform:scale(0.6);
+    background: rgba(255, 255, 255, 0.466);
+    border-radius: 10px;
+}
+
 ::ng-deep table {
     width: 100%;
     overflow-x: hidden;
@@ -43,11 +54,20 @@
 }
 
 .input{
-    background: #580000cc;
+    background: #bd07077a;
     padding: 10px;
     color: white;
     border-radius: 20px;
+    border:none
+    
 }
+
+::ng-deep input, textarea :focus{
+    outline:none
+}
+
+
+
 
 .addform{
     position: relative;
@@ -62,7 +82,7 @@
     /* background: #580000cc;
     padding: 10px;
     border-radius: 20px; */
-    color: white;
+    color: rgba(71,0,0,1);;
     
 }
 
@@ -108,15 +128,18 @@ background-color:rgba(71,0,0,1)!important
 .cardContainer{
     position: relative;
     height: 100%;
-    width: 200px;
+    width: 300px;
     border-right: 1px solid lightgray;
     float: left;
+    background:white;
+    /* margin:10px; */
+    box-shadow: -1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .card{
     position: relative;
     float: left;
-    margin-left: 25px;
+    margin-left: 15px;
     margin-top: 10px;
     /* border: 1px solid lightblue; */
     width: 75%;
@@ -133,7 +156,7 @@ background-color:rgba(71,0,0,1)!important
 }
 
 .card h1{
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .hover{
@@ -141,9 +164,9 @@ background-color:rgba(71,0,0,1)!important
 }
 
 .search{
-    margin: 10px;
+    margin: 5px;
     border-radius: 20px;
-    padding: 5px;
+    padding: 10px;
     border: none;
     background: #3f0c0c;
     box-shadow: 0px 0px 3px black;
@@ -159,15 +182,17 @@ background-color:rgba(71,0,0,1)!important
     float: left;
     margin: 10px;
     width:  calc(70% - 200px);
-    height: 300px;
+    height: 152px;
     border: 1px solid rgba(71,0,0,1);
     box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+    background:white;
+    padding:20px
 }
 
 #info label{
     position: relative;
     float:left;
-    font-size: 12px;
+    font-size: 16px;
     margin-left:5px;
     padding:5px
 }
@@ -183,9 +208,10 @@ background-color:rgba(71,0,0,1)!important
     position: relative;
     float: left;
     margin: 10px;
-    width: calc(70% - 200px);
-    height: 300px;
+    width: calc(200px);
+    height: 60%;
     background: #251f1f;
+    
     
 }
 
@@ -200,10 +226,13 @@ background-color:rgba(71,0,0,1)!important
 
 .notes{
     position: relative;
-    float: right;
-    width: calc(40% - 200px);
-    height: 100%;
-    min-width:300px
+    float: left;
+    width: calc(40% - 100px);
+    height: 60%;
+    margin: 10px;
+    min-width: 300px;
+    background: white;
+    box-shadow: -1px 1px 2px rgba(0,0,0,0.5);
 }
 
 
@@ -214,11 +243,64 @@ background-color:rgba(71,0,0,1)!important
 .searchicon{
     position: absolute;
     top: 11px;
-    right: 14px;
+    right: 40px;
     font-size: 22px;
     color: white;
 }
+.notewrapper{
+    position: relative;
+    float: left;
+    width: 90%;
+    padding: 10px;
+    min-height: 100px;
+    border: 1px solid rgba(101, 1, 1, 0.51);
+    box-shadow: 0px 0px 3px black;
+  
+    margin-top: 5px;
+    margin-left: 2px;
+    border-radius: 5px;
 
+}
+
+::ng-deep .mat-tab-body-content {
+    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: scroll !important;
+}
+
+.custtab{
+    position: absolute;
+    top: -45px;
+    left: -1px;
+    width: 100px;
+    height: 23px;
+    border: 2px solid rgba(71,0,0,1);
+    border-bottom: 2px solid white;
+    background: rgba(71,0,0,0.5);
+    border-top-left-radius: 10px;
+    z-index: 9;
+    border-top-right-radius: 10px;
+    padding: 9px;
+    text-align: center;
+    color: white;
+}
+
+.cust2{
+    border-bottom: 2px solid #251f1f;
+    border: 2px solid rgba(0,0,0,.87);
+    margin-left: 1px;
+}
+
+.topright{
+    position: absolute;
+    top: 5px;
+    right:5px
+}
+
+.scrolly{
+    overflow: hidden;
+    overflow-y: scroll;
+}
 
 
 

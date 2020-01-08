@@ -1,291 +1,372 @@
-
-
 <div class="addform" *ngIf="show">
   <button class="close" (click)="close()">X</button>
-    <div class="centered">
-      
+  <div class="centered">
+
     <mat-horizontal-stepper [linear]="isLinear" #stepper>
-        <!-- (ngSubmit)="onSubmit()"  -->
-        <mat-step [stepControl]="firstFormGroup">
-          <form [formGroup]="firstFormGroup" (change)="getchange()">
-            <ng-template matStepLabel>Contact Information</ng-template>
+      <!-- (ngSubmit)="onSubmit()"  -->
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" (change)="getchange()">
+          <ng-template matStepLabel>Contact Information</ng-template>
 
-            <mat-form-field>
-                <label>Contact</label>
-              <input matInput
-              formControlName="contact" required>
-            </mat-form-field>
-                <br>
-            <mat-form-field>
-                <label>Phone No.</label>
-              <input matInput
-              formControlName="phone" required>
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <label>Email</label>
-              <input matInput
-              formControlName="email" required>
-            </mat-form-field>
+          <mat-form-field>
+            <label>Contact</label>
+            <input matInput formControlName="contact" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <label>Phone No.</label>
+            <input matInput formControlName="phone" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <label>Email</label>
+            <input matInput formControlName="email" required>
+          </mat-form-field>
 
 
 
-            <div style="padding:10px">
-              <button mat-button matStepperNext>Next</button>
-              
-            </div>
+          <div style="padding:10px">
+            <button mat-button matStepperNext>Next</button>
 
-            
-          </form>
-        </mat-step>
-
-
-
-        <mat-step [stepControl]="secondFormGroup" >
-          <form [formGroup]="secondFormGroup" (change)="getchange()">
-            <ng-template matStepLabel>Company Information</ng-template>
-
-            <mat-form-field>
-                <label>Company Name</label>
-              <input matInput  formControlName="name" required>
-            </mat-form-field>
-            <br>
-            <mat-form-field>
-                <label>Address</label>
-              <textarea matInput  formControlName="address" required ></textarea>
-            </mat-form-field>
-
-
-
-            <div style="padding:10px">
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </form>
-        </mat-step>
-
-
-
-
-        <mat-step>
-          <ng-template matStepLabel>Done</ng-template>
-          You are now done.
-          <div>
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button 
-            (click)="createclient();stepper.reset()">Done</button>
           </div>
-        </mat-step>
-      </mat-horizontal-stepper>
-    </div>
+
+
+        </form>
+      </mat-step>
+
+
+
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup" (change)="getchange()">
+          <ng-template matStepLabel>Company Information</ng-template>
+
+          <mat-form-field>
+            <label>Company Name</label>
+            <input matInput formControlName="name" required>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <label>Address</label>
+            <textarea matInput formControlName="address" required></textarea>
+          </mat-form-field>
+
+
+
+          <div style="padding:10px">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+
+
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="createclient();stepper.reset()">Done</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
 </div>
 
-<div  style="height: 100%;overflow-x:hidden;overflow-y:scroll" >
-    <div class="cardContainer hover">
-        <label> 
-            <input class="search">
-            <mat-icon class="searchicon" >search</mat-icon>
-        </label> 
-        <div class="card" *ngFor="let company of datasource;let index = i"
-        (click)="setClient(company,i)"
-        >
-            <span style="padding: 20px;
+<div class="addform" *ngIf="showproject">
+  <button class="close" (click)="this.showproject = false">X</button>
+  <div class="centered">
+  <mat-horizontal-stepper>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <form [formGroup]="projectFormGroup" >
+          <ng-template matStepLabel>Project Name</ng-template>
+
+          <mat-form-field>
+            <label>Project Name</label>
+            <input matInput formControlName="name" required>
+          </mat-form-field>
+        </form>
+         <div>
+          <!-- <button mat-button matStepperPrevious>Back</button> -->
+          <button mat-button (click)="createclient();stepper.reset()">Create Project</button>
+        </div>
+      </mat-step>
+      
+    </mat-horizontal-stepper>
+  </div>
+</div>
+
+
+
+<!-- View Container-->
+<div style="height: 100%;">
+
+  <div class="cardContainer hover scrolly">
+    <label style="margin-left:50px">
+      <input class="search">
+      <mat-icon class="searchicon">search</mat-icon>
+    </label>
+    <div class="card" *ngFor="let company of datasource;let index = i" (click)="setClient(company,i)">
+      <span style="padding: 20px;
             width: 100%;
             height: 100%;
             position: relative;
             float: left;">
-                <h1><mat-icon>group</mat-icon>Company Name</h1> {{company.name}}<br>
-                <h1><mat-icon>person</mat-icon>Contact Name</h1> {{company.contact}}<br>
-                <h1><mat-icon>phone</mat-icon>Contact Phoone</h1> {{company.phone}}<br>
-           
-            </span>
-            
-        </div>
+        <h1>
+          <mat-icon>group</mat-icon>Company Name
+        </h1> {{company.name}}<br>
+        <h1>
+          <mat-icon>person</mat-icon>Contact Name
+        </h1> {{company.contact}}<br>
+        <h1>
+          <mat-icon>phone</mat-icon>Contact Phoone
+        </h1> {{company.phone}}<br>
 
+      </span>
 
     </div>
 
-    <div id="info">
-        <mat-icon style="position: absolute;top:10px;right:10px">edit</mat-icon>
-        
-<button class='stnbtn right hover'
-(click)='this.show = true'
->+</button>
 
-        <form [formGroup]="displayallinfo" (change)="getchange()">
-          
-            <label> <mat-icon>group</mat-icon> Company Id<br>
-                <input matInput
-                formControlName="id" required>
-            </label>    
-        <label>Company Name<br>
-            <input matInput
-            formControlName="name" required>
-        </label> 
-        <br>  
-        <br>  
-        <br>  
-        <label><mat-icon>person</mat-icon>Contact
-                <br>
-                <input matInput
-              formControlName="contact" required>
-        </label>
+  </div>
 
-        <label><mat-icon>phone</mat-icon>Phone No.<br>
-                <input matInput
-                formControlName="phone" required>
-        </label>
+  <!--Action Bar-->
+  <div id="controlpanel">
+    <svg id="Component_56_1" data-name="Component 56 – 1" xmlns="http://www.w3.org/2000/svg" width="47" height="243"
+      >
 
-        <label><mat-icon>email</mat-icon>Email
-            <br>
-            <input matInput
-            formControlName="email" required>
-        </label>
-            <br><br><br>
-         
-        <label><mat-icon>address</mat-icon>Address<br>
-            <input matInput
-            formControlName="address" required>
-        </label>   
+      <g id="addClient" class="hover" (click)='this.show = true'>
+        <path id="Icon_ionic-ios-person" data-name="Icon ionic-ios-person"
+          d="M31.486,30.818c-.506-2.236-3.4-3.326-4.395-3.677a32.764,32.764,0,0,0-3.663-.7,3.722,3.722,0,0,1-1.695-.78c-.281-.337-.112-3.466-.112-3.466a10.429,10.429,0,0,0,.8-1.526A19.68,19.68,0,0,0,23.013,18s.577,0,.78-1.013a9.962,9.962,0,0,0,.52-2.355c-.042-.809-.485-.788-.485-.788a12.328,12.328,0,0,0,.478-3.607c.063-2.89-2.2-5.738-6.3-5.738-4.155,0-6.37,2.848-6.307,5.738a12.859,12.859,0,0,0,.471,3.607s-.443-.021-.485.788a9.962,9.962,0,0,0,.52,2.355c.2,1.013.78,1.013.78,1.013a19.68,19.68,0,0,0,.591,2.665,10.429,10.429,0,0,0,.8,1.526s.169,3.129-.113,3.466a3.722,3.722,0,0,1-1.695.78,32.764,32.764,0,0,0-3.663.7c-1,.352-3.888,1.441-4.395,3.677a.562.562,0,0,0,.555.682H30.938A.561.561,0,0,0,31.486,30.818Z"
+          transform="translate(11.499 2.5)" fill="#470000" />
+        <path id="Icon_ionic-md-add" data-name="Icon ionic-md-add"
+          d="M22.789,14.566h-6.95v5.977H13.7V14.566H6.75V12.727H13.7V6.75h2.138v5.977h6.95Z"
+          transform="translate(-6.75 -6.75)" fill="#470000" />
+      </g>
 
 
+      <g id="addNote" transform="translate(0 93)" class="hover">
+        <path id="Icon_awesome-sticky-note" data-name="Icon awesome-sticky-note"
+          d="M21.938,22.5H31.5V3.938A1.683,1.683,0,0,0,29.813,2.25H1.688A1.683,1.683,0,0,0,0,3.938V32.063A1.683,1.683,0,0,0,1.688,33.75H20.25V24.188A1.692,1.692,0,0,1,21.938,22.5Zm9.07,3.867-6.891,6.891a1.686,1.686,0,0,1-1.2.492H22.5v-9h9v.429A1.682,1.682,0,0,1,31.008,26.367Z"
+          transform="translate(15 19.75)" fill="#470000" />
+        <path id="Icon_ionic-md-add-2" data-name="Icon ionic-md-add"
+          d="M22.789,14.566h-6.95v5.977H13.7V14.566H6.75V12.727H13.7V6.75h2.138v5.977h6.95Z"
+          transform="translate(-6.75 -6.75)" fill="#470000" />
+      </g>
+
+      <g id="deleteClient" transform="translate(0 54.977)" class="hover">
+        <path id="Icon_ionic-md-add-3" data-name="Icon ionic-md-add" d="M22.789,14.566H6.75V12.727H22.789Z"
+          transform="translate(-6.75 -12.727)" fill="#470000" />
+        <path id="Icon_ionic-ios-person-2" data-name="Icon ionic-ios-person"
+          d="M31.486,30.818c-.506-2.236-3.4-3.326-4.395-3.677a32.764,32.764,0,0,0-3.663-.7,3.722,3.722,0,0,1-1.695-.78c-.281-.337-.112-3.466-.112-3.466a10.429,10.429,0,0,0,.8-1.526A19.68,19.68,0,0,0,23.013,18s.577,0,.78-1.013a9.962,9.962,0,0,0,.52-2.355c-.042-.809-.485-.788-.485-.788a12.328,12.328,0,0,0,.478-3.607c.063-2.89-2.2-5.738-6.3-5.738-4.155,0-6.37,2.848-6.307,5.738a12.859,12.859,0,0,0,.471,3.607s-.443-.021-.485.788a9.962,9.962,0,0,0,.52,2.355c.2,1.013.78,1.013.78,1.013a19.68,19.68,0,0,0,.591,2.665,10.429,10.429,0,0,0,.8,1.526s.169,3.129-.113,3.466a3.722,3.722,0,0,1-1.695.78,32.764,32.764,0,0,0-3.663.7c-1,.352-3.888,1.441-4.395,3.677a.562.562,0,0,0,.555.682H30.938A.561.561,0,0,0,31.486,30.818Z"
+          transform="translate(11.499 -3.477)" fill="#470000" />
+      </g>
+
+      <g id="addPayment" transform="translate(1 205)" class="hover"> 
+        <path id="Icon_ionic-md-add-4" data-name="Icon ionic-md-add"
+          d="M22.789,14.566h-6.95v5.977H13.7V14.566H6.75V12.727H13.7V6.75h2.138v5.977h6.95Z"
+          transform="translate(-6.75 -6.75)" fill="#470000" />
+        <path id="Icon_material-payment" data-name="Icon material-payment"
+          d="M30,6H6A2.977,2.977,0,0,0,3.015,9L3,27a2.99,2.99,0,0,0,3,3H30a2.99,2.99,0,0,0,3-3V9A2.99,2.99,0,0,0,30,6Zm0,21H6V18H30Zm0-15H6V9H30Z"
+          transform="translate(13 8)" fill="#470000" />
+      </g>
+
+      <g id="addProject" transform="translate(1 155)" 
+      (click)="addproject()"
+      class="hover">
+        <path id="Icon_ionic-md-add-5" data-name="Icon ionic-md-add"
+          d="M22.789,14.566h-6.95v5.977H13.7V14.566H6.75V12.727H13.7V6.75h2.138v5.977h6.95Z"
+          transform="translate(-6.75 -6.75)" fill="#470000" />
+        <path id="Icon_awesome-project-diagram" data-name="Icon awesome-project-diagram"
+          d="M17.712,17.2h-5.9a1.612,1.612,0,0,0-1.476,1.72V25.8a1.612,1.612,0,0,0,1.476,1.72h5.9a1.612,1.612,0,0,0,1.476-1.72V18.917A1.612,1.612,0,0,0,17.712,17.2ZM8.856,1.72A1.612,1.612,0,0,0,7.38,0h-5.9A1.612,1.612,0,0,0,0,1.72V8.6a1.612,1.612,0,0,0,1.476,1.72H5.891L9.266,17.2a2.9,2.9,0,0,1,2.542-1.722h.013L8.856,9.432V6.879H19.188V3.44H8.856ZM28.044,0h-5.9a1.612,1.612,0,0,0-1.476,1.72V8.6a1.612,1.612,0,0,0,1.476,1.72h5.9A1.612,1.612,0,0,0,29.52,8.6V1.72A1.612,1.612,0,0,0,28.044,0Z"
+          transform="translate(16 14)" fill="#470000" />
+        <path id="Icon_ionic-md-add-6" data-name="Icon ionic-md-add"
+          d="M22.789,14.566h-6.95v5.977H13.7V14.566H6.75V12.727H13.7V6.75h2.138v5.977h6.95Z"
+          transform="translate(-6.75 -6.75)" fill="#470000" />
+      </g>
+    </svg>
 
 
+  </div>
 
-            
-          </form>
+  <div class="graphs">
+
+    <div class="graph">
+      <label style="color:rgba(125,125,125,0.2)">Payment History</label>
+      <svg height="100%" width="100%">
+        <rect width="100" height="15" x="0" y="25" rx="3" ry="3" fill='rgba(255,0,25,0.4)' stroke-width="2"
+          stroke-linecap="round" stroke="red" />
+      </svg>
     </div>
 
-    <!--Client Notes Management-->
-    <mat-tab-group class="notes">
-        <mat-tab label="Notes"> 
-           
-        </mat-tab>
 
-
-        <mat-tab label="Add Notes"> 
-            <form [formGroup]="noteform" (change)="getchange()">
-          
-            <label> <mat-icon>title</mat-icon> 
-               Title<br>
-                    <input matInput
-                    formControlName="title" required>
-            </label>   
-            <br>
-            <br>
-            <br>
-                 
-            <label><mat-icon>note</mat-icon>Note<br>
-                <textarea matInput
-                formControlName="note" required ></textarea>
-            </label> 
-             
-    
-    
-    
-    
-    
-                
-              </form>  
-        </mat-tab>
-        
-      </mat-tab-group>
-
-
-
-    <div class="graphs">
-        
-        <div class="graph">
-            <label style="color:rgba(125,125,125,0.2)">Payment History</label>
-            <svg height="100%" width="100%">
-              <rect width="100" height="15" 
-              x="0" y="25"
-              rx="3" ry="3"
-              fill='rgba(255,0,25,0.4)'
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke="red"
-             />
-              </svg>
-        </div>
-
-        
-        <div class="graph">
-            <label style="color:rgba(125,125,125,0.2)">No. Projects</label>
-            <svg height="100%" width="100%">
-                <!-- <line x1="0" y1="22" x2="200" y2="22" 
+    <div class="graph">
+      <label style="color:rgba(125,125,125,0.2)">No. Projects</label>
+      <svg height="100%" width="100%">
+        <!-- <line x1="0" y1="22" x2="200" y2="22" 
                 stroke-width="15"
                 stroke-linecap="round"
                 stroke="blue"
                 /> -->
-                <rect width="100" height="15" 
-                x="0" y="25"
-                rx="3" ry="3"
-                fill='rgba(0,0,255,0.4)'
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke="blue"
-               />
-              </svg>
-        </div>
+        <rect width="100" height="15" x="0" y="25" rx="3" ry="3" fill='rgba(0,0,255,0.4)' stroke-width="2"
+          stroke-linecap="round" stroke="blue" />
+      </svg>
+    </div>
 
-       
-        <div class="graph">
-            <label style="color:rgba(125,125,125,0.2)">Projects Revenue</label>
-            <svg height="100%" width="100%">
-                <line x1="0" y1="22" [attr.x2]='100/5' y2="22" 
-                stroke-width="15"
-                stroke-linecap="round"
-                stroke="green"
-                />
-              </svg>
 
-        </div>
-
+    <div class="graph">
+      <label style="color:rgba(125,125,125,0.2)">Projects Revenue</label>
+      <svg height="100%" width="100%">
+        <line x1="0" y1="22" [attr.x2]='100/5' y2="22" stroke-width="15" stroke-linecap="round" stroke="green" />
+      </svg>
 
     </div>
 
-    
+
+  </div>
+
+
+  <!--Client Notes Management-->
+  <mat-tab-group class="notes">
+    <mat-tab label="Notes">
+
+      <div class="notewrapper" *ngFor="let note of clientnotes">
+        <span><label> Title</label> &nbsp;
+          {{note.title}}
+        </span><br>
+        <span><label> Date</label> &nbsp;
+          {{note.dateadded | date:'shortDate'}}
+        </span>
+        <br>
+        <span><label>Note</label>
+          <br>
+          {{note.note}}
+        </span>
+      </div>
+
+
+    </mat-tab>
+
+
+    <mat-tab label="Add Notes">
+      <button mat-button class="custbtn topright" (click)="addnote()"> + Note</button>
+      <form [formGroup]="noteform" style="padding:50px">
+
+        <label>
+          <mat-icon>title</mat-icon>
+          <br>
+          <input matInput class="input" placeholder="Title" formControlName="title" required>
+        </label>
+        <br>
+        <br>
+        <br>
+
+        <label>
+          <mat-icon>note</mat-icon><br>
+          <textarea matInput class="input" placeholder="Enter Note ....." formControlName="note" required></textarea>
+        </label>
+
+      </form>
+
+    </mat-tab>
+
+  </mat-tab-group>
 
 
 
 
-    <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
 
-        <!--- Note that these columns can be defined in any order.
+  <!--Company info Container-->
+  <div id="info">
+
+    <!--Edit Button-->
+    <mat-icon class="editicon hover" style="position: absolute;top:10px;right:10px">edit</mat-icon>
+<!-- 
+    <button class='stnbtn right hover' (click)='this.show = true'>+</button> -->
+
+    <form [formGroup]="displayallinfo" (change)="getchange()">
+
+      <label>
+        <mat-icon>group</mat-icon> Company Id<br>
+        <input matInput formControlName="id" required>
+      </label>
+      <label>Company Name<br>
+        <input matInput formControlName="name" required>
+      </label>
+      <br>
+      <br>
+      <br>
+      <label>
+        <mat-icon>person</mat-icon>Contact
+        <br>
+        <input matInput formControlName="contact" required>
+      </label>
+
+      <label>
+        <mat-icon>phone</mat-icon>Phone No.<br>
+        <input matInput formControlName="phone" required>
+      </label>
+
+      <label>
+        <mat-icon>email</mat-icon>Email
+        <br>
+        <input matInput formControlName="email" required>
+      </label>
+      <br><br><br>
+
+      <label>
+        <mat-icon>address</mat-icon>Address<br>
+        <input matInput formControlName="address" required>
+      </label>
+
+
+
+
+
+
+    </form>
+  </div>
+
+
+
+
+  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
+
+  <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column 
+
+  <!-- Position Column 
         <ng-container matColumnDef="position">
           <th mat-header-cell class="head" *matHeaderCellDef> Id </th>
           <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container> -->
-      
-        <!-- Name Column 
+
+  <!-- Name Column 
         <ng-container matColumnDef="name">
           <th mat-header-cell class="head" *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container> -->
-      
-        <!-- Weight Column 
+
+  <!-- Weight Column 
         <ng-container matColumnDef="weight">
           <th mat-header-cell class="head" *matHeaderCellDef> Contact </th>
           <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
         </ng-container> -->
-      
-        <!-- Symbol Column 
+
+  <!-- Symbol Column 
         <ng-container matColumnDef="symbol">
           <th mat-header-cell class="head" *matHeaderCellDef> Contact No. </th>
           <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
         </ng-container> -->
 
-         <!-- location Column 
+  <!-- location Column 
          <ng-container matColumnDef="location">
             <th mat-header-cell class="head" *matHeaderCellDef> Location </th>
             <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
           </ng-container> -->
 
-             <!-- action Column
+  <!-- action Column
          <ng-container matColumnDef="action">
             <th mat-header-cell class="head" *matHeaderCellDef> Action </th>
             <td mat-cell *matCellDef="let element"> 
@@ -305,7 +386,6 @@
        showFirstLastButtons></mat-paginator>
 
        </div> -->
-      
+
 
 </div>
-

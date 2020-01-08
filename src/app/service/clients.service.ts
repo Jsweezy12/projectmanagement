@@ -18,4 +18,12 @@ export class ClientsService {
   getAllClients(){
     return this.http.get(`${this.client}`)
   }
+
+  updateClient(id,data){
+    this.http.patch(`${this.client}/${id}`,data).subscribe(response =>{
+      console.log(response)
+    },error =>{
+      console.log(error)
+    })
+  }
 }

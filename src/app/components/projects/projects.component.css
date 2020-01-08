@@ -1,0 +1,39 @@
+div{
+    position: relative;
+    float: left;
+}
+
+#projectslist{
+width: 200px;
+height: 100%;
+background: white;
+
+}
+
+#controlpanel{
+    width: auto;
+    height: 100%;
+    padding: 5px;
+    transform:scale(0.6);
+    background: rgba(255, 255, 255, 0.466);
+    border-radius: 10px;
+}
+
+#taskmanager{
+    
+    margin: 10px;
+    width: 300px;
+    height: 200px;
+    background: white;
+    perspective: 600px;
+    box-shadow: -1px 1px 2px rgba(0,0,0,0.5);
+    
+}
+
+#projectStats{
+    width: 200px;
+    height: 200px;
+    background: rgba(0,0,0,0.5);
+    margin:10px
+
+}
