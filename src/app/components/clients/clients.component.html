@@ -1,9 +1,7 @@
 
-<button class='stnbtn right hover'
-(click)='this.show = true'
->+</button>
 
 <div class="addform" *ngIf="show">
+    <div id="centered">
     <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <!-- (ngSubmit)="onSubmit()"  -->
         <mat-step [stepControl]="firstFormGroup">
@@ -76,19 +74,26 @@
           </div>
         </mat-step>
       </mat-horizontal-stepper>
+    </div>
 </div>
 
-<div style="height: 100%;overflow-x:hidden;overflow-y:scroll" >
-    <div class="cardContainer">
-        <div class="card" *ngFor="let company of datasource">
-            <span style="padding: 30px;
+<div  style="height: 100%;overflow-x:hidden;overflow-y:scroll" >
+    <div class="cardContainer hover">
+        <label> 
+            <input class="search">
+            <mat-icon class="searchicon" >search</mat-icon>
+        </label> 
+        <div class="card" *ngFor="let company of datasource;let index = i"
+        (click)="setClient(company,i)"
+        >
+            <span style="padding: 20px;
             width: 100%;
             height: 100%;
             position: relative;
             float: left;">
-                <h1>Company Name</h1> {{company.name}}<br>
-                <h1>Contact Name</h1> {{company.contact}}<br>
-                <h1>Contact Phoone</h1> {{company.phone}}<br>
+                <h1><mat-icon>group</mat-icon>Company Name</h1> {{company.name}}<br>
+                <h1><mat-icon>person</mat-icon>Contact Name</h1> {{company.contact}}<br>
+                <h1><mat-icon>phone</mat-icon>Contact Phoone</h1> {{company.phone}}<br>
            
             </span>
             
@@ -96,6 +101,138 @@
 
 
     </div>
+
+    <div id="info">
+        <mat-icon style="position: absolute;top:10px;right:10px">edit</mat-icon>
+        
+<button class='stnbtn right hover'
+(click)='this.show = true'
+>+</button>
+
+        <form [formGroup]="displayallinfo" (change)="getchange()">
+          
+            <label> <mat-icon>group</mat-icon> Company Id<br>
+                <input matInput
+                formControlName="id" required>
+            </label>    
+        <label>Company Name<br>
+            <input matInput
+            formControlName="name" required>
+        </label> 
+        <br>  
+        <br>  
+        <br>  
+        <label><mat-icon>person</mat-icon>Contact
+                <br>
+                <input matInput
+              formControlName="contact" required>
+        </label>
+
+        <label><mat-icon>phone</mat-icon>Phone No.<br>
+                <input matInput
+                formControlName="phone" required>
+        </label>
+
+        <label><mat-icon>email</mat-icon>Email
+            <br>
+            <input matInput
+            formControlName="email" required>
+        </label>
+            <br><br><br>
+         
+        <label><mat-icon>address</mat-icon>Address<br>
+            <input matInput
+            formControlName="address" required>
+        </label>   
+
+
+
+
+
+            
+          </form>
+    </div>
+
+    <!--Client Notes Management-->
+    <mat-tab-group class="notes">
+        <mat-tab label="Notes"> 
+           
+        </mat-tab>
+
+
+        <mat-tab label="Add Notes"> 
+            <form [formGroup]="noteform" (change)="getchange()">
+          
+            <label> <mat-icon>title</mat-icon> 
+               Title<br>
+                    <input matInput
+                    formControlName="title" required>
+            </label>   
+                 
+            <label><mat-icon>note</mat-icon>Note<br>
+                <input matInput
+                formControlName="note" required>
+            </label> 
+             
+    
+    
+    
+    
+    
+                
+              </form>  
+        </mat-tab>
+        
+      </mat-tab-group>
+
+
+
+    <div class="graphs">
+        
+        <div class="graph">
+            <label style="color:rgba(125,125,125,0.2)">Payment History</label>
+            <svg height="100%" width="100%">
+                <line x1="0" y1="22" x2="200" y2="22" 
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke="red"
+                />
+              </svg>
+        </div>
+
+        
+        <div class="graph">
+            <label style="color:rgba(125,125,125,0.2)">No. Projects</label>
+            <svg height="100%" width="100%">
+                <line x1="0" y1="22" x2="200" y2="22" 
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke="blue"
+                />
+              </svg>
+        </div>
+
+       
+        <div class="graph">
+            <label style="color:rgba(125,125,125,0.2)">Projects Revenue</label>
+            <svg height="100%" width="100%">
+                <line x1="0" y1="22" [attr.x2]='100/5' y2="22" 
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke="green"
+                />
+              </svg>
+
+        </div>
+
+
+    </div>
+
+    
+
+
+
+
     <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8"> -->
 
         <!--- Note that these columns can be defined in any order.

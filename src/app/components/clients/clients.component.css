@@ -38,7 +38,7 @@
 
 .right{
     position: absolute;
-    top:5px;
+    bottom:5px;
     right:5px
 }
 
@@ -100,8 +100,16 @@
     margin-top: 10px;
     /* border: 1px solid lightblue; */
     width: 75%;
-    height: 200px;
+    height: 250px;
     box-shadow: -2px 2px 3px rgba(0,0,0,0.3);  
+}
+
+.centered{
+    width: 650px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .card h1{
@@ -112,6 +120,84 @@
     cursor: pointer;
 }
 
+.search{
+    margin: 10px;
+    border-radius: 20px;
+    padding: 5px;
+    border: none;
+    background: #3f0c0c;
+    box-shadow: 0px 0px 3px black;
+    color: white;
+}
+
+.search:focus{
+    outline:none
+}
+
+#info{
+    position: relative;
+    float: left;
+    margin: 10px;
+    width:  calc(70% - 200px);
+    height: 300px;
+    border: 1px solid rgba(71,0,0,1);
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
+}
+
+#info label{
+    position: relative;
+    float:left;
+    font-size: 12px;
+    margin-left:5px;
+    padding:5px
+}
+
+#info label input{
+    border: none;
+    border-bottom: 2px solid rgba(71,0,0,1);
+  
+    font-size: 14px;
+}
+
+.graphs{
+    position: relative;
+    float: left;
+    margin: 10px;
+    width: calc(70% - 200px);
+    height: 300px;
+    background: #251f1f;
+    
+}
+
+.graph{
+    position: relative;
+    float: left;
+    margin:20px;
+    width: 90%;
+    height: 50px;
+    /* border: 1px solid rgba(125,125,125,0.13) */
+}
+
+.notes{
+    position: relative;
+    float: right;
+    width: calc(40% - 200px);
+    height: 100%;
+    
+}
+
+
+.material-icons{
+    font-size: 15px;
+}
+
+.searchicon{
+    position: absolute;
+    top: 11px;
+    right: 14px;
+    font-size: 22px;
+    color: white;
+}
 
 
 

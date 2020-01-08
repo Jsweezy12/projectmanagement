@@ -16,10 +16,12 @@ export interface PeriodicElement {
 
 
 // clientee = {
-//   "id": "",
+//   "id": "string",
 //   "name": "string",
-//   "client": "string",
-//   "task": [
+//   "contact": "string",
+//   "phone": "string",
+//   "address": "string",
+//   "paymentHistory": [
 //     {}
 //   ],
 //   "dateadded": "string",
@@ -62,11 +64,14 @@ export class ClientsComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  displayallinfo:FormGroup;
+  noteform:FormGroup;
   datasource;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol','location','action'];
   // dataSource = ELEMENT_DATA;
   show:boolean=false;
+  selectedClient;
 
 
   constructor(private client:ClientsService,
@@ -87,6 +92,22 @@ export class ClientsComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       address: ['', Validators.required],
       name: ['', Validators.required]
+    });
+
+
+    this.displayallinfo =this._formBuilder.group({
+      address: ['', Validators.required],
+      name: ['', Validators.required],
+      contact: ['', Validators.required],
+      phone: ['', Validators.required],
+      email: [''],
+      id:['']
+    });
+
+
+    this.noteform =this._formBuilder.group({
+      title: ['', Validators.required],
+      note: ['', Validators.required]
     });
   }
 
@@ -111,6 +132,11 @@ export class ClientsComponent implements OnInit {
     let data = this.firstFormGroup.value
     let data2 = this.secondFormGroup.value
     console.log(data,data2)
+  }
+
+  setClient(client,i){
+    console.log(client)
+    this.displayallinfo.patchValue(client)
   }
 
   // onSubmit() {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HttpClientModule } from '@angular/common/http';
+// import { FontAwesomeModule } from 'ngx-icons';
 
 import { AppComponent } from './app.component';
 import { LoginpageComponent } from './components/loginpage/loginpage.component';
@@ -17,8 +18,11 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import {MatIconModule} from '@angular/material/icon';
+
+
 
 
 const appRoutes: Routes = [
@@ -52,7 +56,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     MatStepperModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTabsModule,
+    MatIconModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
