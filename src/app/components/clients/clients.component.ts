@@ -5,6 +5,7 @@ import {ClientsService} from '../../service/clients.service';
 import {ProjectsService} from '../../service/projects.service';
 import {FormBuilder, FormGroup, Validators ,FormControl , FormArray } from '@angular/forms';
 import { formatDate }    from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 
 export interface PeriodicElement {
@@ -64,17 +65,14 @@ export interface PeriodicElement {
 
 export class ClientsComponent implements OnInit {
 
-  projectJson:{
-    "name": "string",
-    "client": "string",
-    "task": [
-      {}
-    ],
-    "dateadded": "string",
-    "notes": [
-      {}
-    ],
-    "status": "string",
+   projectJson={
+    name: "string",
+    client: "string",
+    task: [],
+    dateadded: "string",
+    notes: [],
+    status: "string",
+    clientname: ''
   }
 
   isLinear = false;
@@ -94,7 +92,7 @@ export class ClientsComponent implements OnInit {
 
 
   constructor(private client:ClientsService,
-    private projects: ProjectsService,
+    private projects: ProjectsService,private toastr: ToastrService,
     private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -150,8 +148,10 @@ export class ClientsComponent implements OnInit {
     console.log(data)
   
     this.client.createClient(data).subscribe(res =>{
+      this.toastr.success(`Client Added`);
       console.log(res)
     },error =>{
+      this.toastr.error(`Client Not Added`);
       console.log(error)
     });
     this.show=false
@@ -196,9 +196,33 @@ export class ClientsComponent implements OnInit {
    this.client.updateClient(id,data);
  }
 
- addproject(){
+ startproject(){
   this.showproject= true
-  this.projectJson
+ }
+
+ addproject(){
+
+  if(this.displayallinfo.get("id").value){
+    this.projectJson.name = this.projectFormGroup.get('name').value;
+    this.projectJson.client = this.displayallinfo.get("id").value
+    this.projectJson.clientname = this.displayallinfo.get("name").value;
+    console.log(this.projectJson);
+
+    this.projects.createProject(this.projectJson).subscribe(res =>{
+      this.toastr.success(`Project Created For ${this.displayallinfo.get("name").value}`);
+     },error =>{
+      this.toastr.error(`Project Not Created`);
+     });
+  
+
+  }else{
+    this.toastr.error(`Please Select a Client `);
+  }
+
+ 
+
+
+
 
  }
 

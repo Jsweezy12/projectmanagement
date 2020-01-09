@@ -20,6 +20,10 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
+import { ToastrModule } from 'ngx-toastr';
+
 
 import {MatIconModule} from '@angular/material/icon';
 
@@ -60,7 +64,9 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatTabsModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatTooltipModule,
+    ToastrModule.forRoot() 
     
   ],
   providers: [],
